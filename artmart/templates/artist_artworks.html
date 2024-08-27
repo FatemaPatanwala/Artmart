@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Artworks</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png" width="15%">
+
+        <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'create_artwork' %}">CREATE ARTWORK</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <h1 style="text-align: center;">My Artworks</h1>
+    
+    {% if artworks %}
+        <div >
+            {% for artwork in artworks %}
+                <div class="inline" >
+                    {% if artwork.image %}
+                    <a href="{%url 'artwork_detail' artwork_id=artwork.id %}"> 
+                        <img src="{{ artwork.image.url }}" alt="Artwork Image" width="19%" style="border:5px solid #201f1f; margin-top:50px ;margin-left: 20px;">
+                    </a>{% endif %}
+                </div>
+                 
+                    <span class="caption" style="font-size: 150%;"><b>{{ artwork.title }}</b></span>
+        
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have not created any artworks yet.</p>
+    {% endif %}
+</body>
+</html>

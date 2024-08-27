@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+
+        <ul>
+                <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
+                <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+                <li><a href="{% url 'user_login' %}">USER LOGIN</a></li>
+        </ul>  
+    </nav>
+
+    <div id="box" style="width:40% ; height: 60% ;margin-left: 30%;" >
+    <h1>Register</h1>
+    <form method="post" style="font-size: 100%; font-weight: bold;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button style="margin-left: 40%;" type="submit">Register</button>
+    </form>
+    </div>
+
+</body>
+</html> 

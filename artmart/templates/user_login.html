@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+
+        <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
+                <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'cart' %}">CART</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+              
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+                <li><a href="{% url 'register' %}">REGISTER</a></li>
+            {% endif %}
+        </ul>
+
+        
+    </nav>
+  
+    <div class="container" style="width:30%; margin-left: 34%;">
+    <h1>User Login</h1>
+    <form method="POST" style="font-size: 100%; font-weight: bold; text-align: center;">
+        {% csrf_token %}
+        <label for="username">USERNAME</label>
+        <input type="text" name="username" placeholder="Username">
+        <label for="password">PASSWORD</label>
+
+        <input type="password" name="password" placeholder="Password">
+
+    <button style="margin-left: 40%;" type="submit">Login</button>
+       
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html> 

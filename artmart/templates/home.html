@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+   
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+
+        <ul>
+            {% if user.is_authenticated %}
+                {% if is_artist %}
+                <li><a href="{% url 'artist_artworks' %}">MY ARTWORKS</a></li>
+                {% endif %}
+                
+                <li><a href="{% url 'artwork' %}"> ARTWORKS</a></li>
+                <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'cart' %}">CART</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+             
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+                <li><a href="{% url 'user_login' %}">USER LOGIN</a></li>
+
+                <li><a href="{% url 'register' %}">REGISTER</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <marquee scrollamount="10" style="margin-top: 2%; font-size: 140%; text-transform: capitalize; color: #0587a1;">Your one-stop online marketplace for buying and selling art pieces.</marquee>
+    
+
+    <div class="flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="overlap">
+            <img src="https://cdn.shopify.com/s/files/1/0174/7648/products/Martin_Whatson_Beyond_the_Wall_Vertical_Gallery_2019_1024x1024.jpg?v=1571438667" , 
+            , width="100%" ,style="display: block; margin-left: auto; margin-right: auto;">
+            <div class="text-container">
+                <h2>What Is </h2>
+                <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="33%", style="padding-bottom:2%;" >
+            </div></div>
+          </div>
+          <div class="flip-card-back">
+           <p> "ART MART" is envisioned as a thriving online marketplace that empowers artists and craftspeople by providing them with a platform
+             to showcase and sell their creations to a global audience. It aims to curate a diverse collection of high-quality art and handmade products, ensuring that customers have access to unique and original pieces that can't be found elsewhere.</p>
+          </div>
+        </div>
+      </div>
+
+    <img src="\media\artwork_images\Friends_photo_frame_lHuhE1q.jpg" alt="Artwork Image" width="22%" style="border:5px solid #201f1f; margin-top:45px ;margin-left: 20px; ">
+    <img src="\media\artwork_images\Screenshot_2024-08-20_231815_wqXpAQu.png" alt="Artwork Image" width="18.5%" style="border:5px solid #201f1f; margin-top:45px ;margin-left: 20px; ">
+    <img src="\media\artwork_images\Screenshot_2024-08-20_230638.png" alt="Artwork Image" width="22.5%" style="border:5px solid #201f1f; margin-top:45px ;margin-left: 20px; ">
+    <img src="\media\artwork_images\Screenshot_2024-08-20_231953.png" alt="Artwork Image" width="23%" style="border:5px solid #201f1f; margin-top:45px ;margin-left: 20px; ">
+
+</body>
+</html> 

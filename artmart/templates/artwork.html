@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artwork</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+
+        <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'cart' %}">CART</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+            <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+                <li><a href="{% url 'user_login' %}">USER LOGIN</a></li>
+                <li><a href="{% url 'register' %}">REGISTER</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1 style="text-align: center;" > ARTWORKS </h1>
+    
+    {% for artwork in artworks %}
+    <div class="inline">
+    {% if artwork.image %}
+      <a href="{%url 'artwork_detail' artwork_id=artwork.id %}"> 
+      <img src="{{ artwork.image.url }}" alt="Artwork Image" width="19%" style="border:5px solid #201f1f; margin-top:50px"></a>
+      <span class="caption"><b>{{ artwork.title }}</b></span>
+    {% endif %}
+    </div> 
+    {% endfor %}
+
+    {% if is_artist %}
+    <a href="{% url 'create_artwork' %}"> 
+    <button style="margin-top: 2%; margin-left: 40%">Create artwork</button></a>
+    {% endif %}
+
+</body>
+</html> 

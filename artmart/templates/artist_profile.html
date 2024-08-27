@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+
+        <ul>
+            <li><a href="{% url 'home' %}">HOME</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
+
+            <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'cart' %}">CART</a></li>
+                <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            {% else %}
+            <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
+
+            <li><a href="{% url 'artist' %}">ARTIST</a></li>
+                <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
+                <li><a href="{% url 'user_login' %}">USER LOGIN</a></li>
+                <li><a href="{% url 'register' %}">REGISTER</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+<div class="container" style="width: 60%;">
+    <spam style="font-size: 150%;font-weight: bold; margin-left: 4%; margin-top: 10%;">Artist profile :{{ artist_profile.user_profile.user.username }}</spam>
+    {% if artist_profile.user_profile.profile_picture %}
+    <img src="{{ artist_profile.user_profile.profile_picture.url }}" alt="Artist Image" width="29%" style="border:5px solid #201f1f; margin-top:25px; margin-right: 65%;">
+    {% endif %}
+    
+    {% if artworks %}
+        <div >
+            <h1 style="margin-top: 10%; color: #000;">ARTWORKS</h1>
+            {% for artwork in artworks %}
+                <div class="inline" >
+                    {% if artwork.image %}
+                    <a href="{%url 'artwork_detail' artwork_id=artwork.id %}"> 
+                        <img src="{{ artwork.image.url }}" alt="Artwork Image" width="22%" style="border:5px solid #201f1f; margin-top:30px ;margin-left: 2px;">
+                    </a>{% endif %}
+                </div>
+                 
+                    <span style="font-size: 150%; margin-top: 2px ;margin-bottom: 10px;"><b>{{ artwork.title }}</b></span>
+        
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You have not created any artworks yet.</p>
+    {% endif %}
+</div>
+</body>
+</html>
