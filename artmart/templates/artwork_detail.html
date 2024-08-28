@@ -15,8 +15,7 @@
             <li><a href="{% url 'home' %}">HOME</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
-
-            <li><a href="{% url 'artist' %}">ARTIST</a></li>
+            <li><a href="{% url 'create_artwork' %}">CREATE ARTWORK</a></li>
                 <li><a href="{% url 'cart' %}">CART</a></li>
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             {% else %}
