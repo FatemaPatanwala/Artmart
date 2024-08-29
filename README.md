@@ -35,4 +35,11 @@ Art Mart is an online marketplace where artists can showcase and sell their artw
 -Database: PostgreSQL
 
 ## Screenshots
-
+- Home page :
+   ![Screenshot 2024-08-29 200727](https://github.com/user-attachments/assets/609973e0-eb88-444a-a3fb-c7db1952fa4e)
+- Register page :
+![Screenshot 2024-08-29 200528](https://github.com/user-attachments/assets/49389a72-79cf-4d82-9a18-9845272baa3c)
+- Artists Page : 
+![Screenshot 2024-08-29 200648](https://github.com/user-attachments/assets/e78e54c0-5ea5-409b-acdb-3bd6c7fd6800)
+-Artworks page :
+![Screenshot 2024-08-29 200631](https://github.com/user-attachments/assets/2a676358-4eed-473e-b0df-72d4ed9bde2a)
