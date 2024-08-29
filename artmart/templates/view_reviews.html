@@ -4,36 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>{{ artwork.title }} - Reviews</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-   
 </head>
 <body>
     <nav>
-        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png", width="15%" >
+        <img src="https://www.amocrm.ru/uploads/2019/06/6a1309bf54007942fe4fa24d489618d2promo_files63aartmart-2.png" width="15%">
 
         <ul>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'artwork' %}"> ARTWORKS</a></li>
+                <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
                 <li><a href="{% url 'artist' %}">ARTIST</a></li>
                 <li><a href="{% url 'cart' %}">CART</a></li>
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             {% else %}
-             
                 <li><a href="{% url 'artist_login' %}">ARTIST LOGIN</a></li>
                 <li><a href="{% url 'user_login' %}">USER LOGIN</a></li>
-
                 <li><a href="{% url 'register' %}">REGISTER</a></li>
             {% endif %}
         </ul>
     </nav>
+
     <div class="container">
-    <h1>Leave Review for {{ artwork.title }}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" style="margin-left: 44%;">Submit Review</button>
-    </form>
+        <h1>Reviews for {{ artwork.title }}</h1>
+        {% if reviews %}
+                {% for review in reviews %}
+                    <li style="font-size: 100%; font-weight: 500; list-style-type: square;">
+                        <p><b>USERNAME</b> : {{ review.user.user.username }}</p>
+                        <p><b>RATING</b> : {{ review.rating }}/5</p>
+                        <p><b>COMMENT</b> : {{ review.comment }}</p></li>
+                {% endfor %}
+        {% else %}
+            <p>No reviews yet for this artwork.</p>
+        {% endif %}
     </div>
 </body>
 </html>

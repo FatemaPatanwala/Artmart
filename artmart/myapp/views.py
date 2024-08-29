@@ -191,11 +191,6 @@ def checkout(request):
     return render(request, 'checkout.html', {'order': order})
 
 
-#ORDER HISTORY
-@login_required
-def order_history(request):
-    orders = Order.objects.filter(buyer=request.user.userprofile, is_paid=True)
-    return render(request, 'order_history.html', {'orders': orders})
 
 
 #REVIEW
@@ -213,6 +208,11 @@ def leave_review(request, artwork_id):
     else:
         form = ReviewForm()
     return render(request, 'leave_review.html', {'form': form, 'artwork': artwork})
+
+def view_reviews(request, artwork_id):
+    artwork = get_object_or_404(Artwork, id=artwork_id)
+    reviews = Review.objects.filter(artwork=artwork)
+    return render(request, 'view_reviews.html', {'artwork': artwork, 'reviews': reviews})
 
 
 

@@ -15,7 +15,11 @@
             <li><a href="{% url 'home' %}">HOME</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'artwork' %}">ARTWORKS</a></li>
-            <li><a href="{% url 'create_artwork' %}">CREATE ARTWORK</a></li>
+                {% if is_artist %}
+                    <li><a href="{% url 'create_artwork' %}">CREATE ARTWORK</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'view_reviews' artwork_id=artwork.id %}">REVIEWS</a></li>
+                
                 <li><a href="{% url 'cart' %}">CART</a></li>
                 <li><a href="{% url 'logout' %}">LOGOUT</a></li>
             {% else %}
@@ -49,6 +53,10 @@
 
             <a href="{% url 'add_to_cart' artwork_id=artwork.id %}"> 
                 <button style="margin-top: 2%; margin-left: 7%">Add to cart</button></a>
+            <a href="{% url 'leave_review' artwork_id=artwork.id %}"> 
+                <button style="margin-top: 2%; margin-left: 7%">Add a Review</button></a>
+
+            
     {%endif%}   
             
     </div>
